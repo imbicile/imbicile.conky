@@ -1,0 +1,24 @@
+---
+# defaults file for roles/imbicile.conky
+
+# net iface
+conky_net: "wlan0"
+
+# font
+conky_font: "Terminus:bold:size=14"
+
+# weater
+conky_weather: true
+
+# default coors
+conky_default_color: "white"
+conky_outline_color: "black"
+conky_shade_color: "black"
+
+# other colors
+# https://colorscheme.ru/html-colors.html
+conky_color0: "#C0C0C0" # labels
+conky_color1: "#FFA500" # wireles
+conky_color2: "#00FF00" # ip\down\bat
+conky_color3: "#DC143C" # temp\load\down\distr
+conky_color4: "#85C1E9" # uptime\inet

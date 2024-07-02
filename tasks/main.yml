@@ -1,0 +1,13 @@
+---
+# tasks file for roles/imbicile.conky
+
+- name: List users homes
+  ansible.builtin.shell: "ls -d /home/*/ | cut -f3 -d'/'"
+  register: homedirs
+  changed_when: false
+
+- name: Install
+  ansible.builtin.include_tasks: install.yml
+
+- name: Configure
+  ansible.builtin.include_tasks: config.yml

@@ -1,0 +1,44 @@
+---
+- name: Install
+  ansible.builtin.apt:
+    package:
+      - conky-all
+      - lm-sensors
+    state: present
+    update_cache: true
+
+- name: Make conky conf dir
+  file:
+    path: "/home/{{ item }}/.conky"
+    state: directory
+    owner: "{{ item }}"
+    group: "{{ item }}"
+    mode: "0755"
+  loop: "{{ homedirs.stdout_lines }}"
+
+- name: Create script
+  ansible.builtin.copy:
+    src: conky.sh
+    dest: "/home/{{ item }}/.conky/"
+    owner: "{{ item }}"
+    group: "{{ item }}"
+    mode: "0755"
+  loop: "{{ homedirs.stdout_lines }}"
+
+- name: Create ping script
+  ansible.builtin.copy:
+    src: ping.sh
+    dest: "/home/{{ item }}/.conky/"
+    owner: "{{ item }}"
+    group: "{{ item }}"
+    mode: "0755"
+  loop: "{{ homedirs.stdout_lines }}"
+
+- name: Create autostart
+  ansible.builtin.template:
+    src: conky.desktop.j2
+    dest: "/home/{{ item }}/.config/autostart/conky.desktop"
+    owner: "{{ item }}"
+    group: "{{ item }}"
+    mode: "0644"
+  loop: "{{ homedirs.stdout_lines }}"

@@ -1,0 +1,22 @@
+- name: List power supply
+  ansible.builtin.shell: "ls /sys/class/power_supply/ | grep BAT"
+  register: power_supply
+  changed_when: false
+
+- name: Create left
+  ansible.builtin.template:
+    src: conky_left.j2
+    dest: "/home/{{ item }}/.conky/conky_left"
+    owner: "{{ item }}"
+    group: "{{ item }}"
+    mode: "0644"
+  loop: "{{ homedirs.stdout_lines }}"
+
+- name: Create right
+  ansible.builtin.template:
+    src: conky_right.j2
+    dest: "/home/{{ item }}/.conky/conky_right"
+    owner: "{{ item }}"
+    group: "{{ item }}"
+    mode: "0644"
+  loop: "{{ homedirs.stdout_lines }}"
