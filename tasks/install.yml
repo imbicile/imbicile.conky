@@ -4,6 +4,7 @@
     package:
       - conky-all
       - lm-sensors
+      - xfonts-terminus
     state: present
     update_cache: true
 
