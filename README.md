@@ -43,3 +43,7 @@ conky_color2: "#00FF00" # ip\down\bat
 conky_color3: "#DC143C" # temp\load\down\distr
 conky_color4: "#85C1E9" # uptime\inet
 ```
+
+### site
+
+https://imbicile.pp.ru/conky-pogoda-temperatura-temy/
