@@ -14,8 +14,8 @@ conky.config = {
   font = '{{ conky_font }}',
   gap_x = 40,
   gap_y = 70,
-  maximum_width = 300,
-  minimum_width = 300,
+  maximum_width = 400,
+  minimum_width = 400,
   minimum_height = 5,
   net_avg_samples = 2,
   double_buffer = true,
@@ -44,29 +44,42 @@ conky.config = {
 }
 conky.text = [[
 {% for cpu in range(ansible_processor_vcpus) recursive%}
-${color0}CPU{{ cpu }}:${color3} ${cpu cpu{{ cpu }}}%$color ${goto 120}${cpubar cpu{{ cpu }}}
+${color0}CPU{{ cpu }}:${color3} ${cpu cpu{{ cpu }}}%${color} ${goto 120}${cpubar cpu{{ cpu }}}
 {% endfor %}
 
-$hr
+${hr}
+
+{% for process in range(1, conky_process_count + 1) %}
+${color2}●$color ${top name {{ process }}} $alignc${top pid {{ process }}} ${alignr}${top cpu {{ process }}}
+{% endfor %}
+
+${hr}
 
 {% for core in range(ansible_processor_cores) recursive%}
-${color0}Core {{ core }}:${color3} $alignr${execi 100 sensors | grep -i '^Core {{ core }}' | awk ' { print $3 }'}$color
+${color0}Core {{ core }}:${color3} ${alignr}${execi 100 sensors | grep -i '^Core {{ core }}' | awk ' { print $3 }'}${color}
 {% endfor %}
 
-$hr
+${hr}
 
-${color0}MEM :$color  $membar
-${color0}SWAP:$color  $swapbar
+${color0}MEM :${color}  $membar
+${color0}SWAP:${color}  $swapbar
 
-$hr
+${hr}
+
+{% for process in range(1, conky_process_count + 1) %}
+${color2}●$color ${top_mem name {{ process }}} ${alignc}${top_mem pid {{ process }}} ${alignr}${top_mem mem {{ process }}}
+{% endfor %}
+
+${hr}
 
 {%for mount in ansible_mounts | map(attribute='mount') %}
-${color0}{{ mount }}$color $alignc${fs_bar {{ mount }}}
+${color0}{{ mount }} ${goto 200}${color3}${fs_used {{ mount }}}${color0} ${goto 300}\ ${alignr}${color2}${fs_free {{ mount }}}${color}
+${fs_bar {{ mount }}}
 {% endfor %}
 
-$hr
+${hr}
 
 {%for bat in power_supply.stdout_lines %}
-${color0}{{ bat }}:  ${color2}${battery_bar {{ bat }}}$color
+${color0}{{ bat }}:  ${color2}${battery_bar {{ bat }}}${color}
 {% endfor %}
 ]]

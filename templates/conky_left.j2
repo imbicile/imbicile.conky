@@ -44,31 +44,32 @@ conky.config = {
 }
 conky.text = [[
 {% if conky_weather %}
-$alignc${font Noto Color Emoji:size=32}$alignc${execi 900 curl "wttr.in/Saint+Petersburg?format=1"}$font
+${alignc}${font Noto Color Emoji:size=32}${alignc}${execi 900 curl "wttr.in/Saint+Petersburg?format=1"}$font
 
-$hr
+${hr}
 
 {% endif %}
-$alignc${color0}Uptime: ${color4}$uptime$color
+${alignc}${color0}Uptime: ${color4}$uptime${color}
 
-$hr
+${hr}
 
-$alignc${color1}${wireless_essid {{ conky_net }}}$color
-$alignc${color1}${wireless_link_bar 6,170 {{ conky_net }}}$color
-$alignc${color2}${addr {{ conky_net }}}$color
-$alignc-----
-$alignc${color4}${execi 100 ~/.conky/ping.sh}$color
+${alignc}${color1}${wireless_essid {{ conky_net }}}${color}
+${alignc}${color1}${wireless_link_bar 6,170 {{ conky_net }}}${color}
 
-$hr
+${alignc}${color2}${addr {{ conky_net }}}${color}
+${alignc}-----
+${alignc}${color4}${execi 100 ~/.conky/ping.sh}${color}
+
+${hr}
 
 ${color2}${downspeedgraph {{ conky_net }} 20,145} ${color3}${upspeedgraph {{ conky_net }} 20,145}
 
-${color2}▼ $color${downspeed {{ conky_net }}} $alignr${upspeed {{ conky_net }}}${color3} ▲$color
-${color2}▼ $color${totaldown {{ conky_net }}} $alignr${totalup {{ conky_net }}}${color3} ▲$color
+${color2}▼ ${color}${downspeed {{ conky_net }}} ${alignr}${upspeed {{ conky_net }}}${color3} ▲${color}
+${color2}▼ ${color}${totaldown {{ conky_net }}} ${alignr}${totalup {{ conky_net }}}${color3} ▲${color}
 
-$hr
+${hr}
 
-$alignc${color4}{{ ansible_board_vendor }} {{ ansible_product_version }}
+${alignc}${color4}{{ ansible_board_vendor }} {{ ansible_product_version }}
 
-${color3}{{ ansible_distribution }} {{ ansible_distribution_version }} $alignr${color2}{{ ansible_kernel }}$color
+${color3}{{ ansible_distribution }} {{ ansible_distribution_version }} ${alignr}${color2}{{ ansible_kernel }}${color}
 ]]

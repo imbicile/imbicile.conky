@@ -10,6 +10,9 @@ conky_font: "Terminus:bold:size=14"
 # weater
 conky_weather: true
 
+# process count
+conky_process_count: 5
+
 # default coors
 conky_default_color: "white"
 conky_outline_color: "black"
