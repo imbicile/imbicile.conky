@@ -1,5 +1,12 @@
 # Conky
 
+<div align="center">
+<img src="./img/screen.png" width="90%" />
+<br><br>
+</div>
+
+# Info
+
 Install imbicile conky with config
 
 Install in `~/.conky` folder
