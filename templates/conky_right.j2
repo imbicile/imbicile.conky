@@ -80,6 +80,6 @@ ${fs_bar {{ mount }}}
 ${hr}
 
 {%for bat in power_supply.stdout_lines %}
-${if_match "${battery_percent {{ bat }}}" < 30}${color0}{{ bat }}: ${color2}${battery_bar {{ bat }}}${color}${else}${color0}{{ bat }}:  ${color3}${battery_bar {{ bat }}}${color}${endif}
+${if_match "${battery_percent {{ bat }}}" < 30}${color0}{{ bat }}:  ${color2}${battery_bar {{ bat }}}${color}${else}${color0}{{ bat }}:  ${color3}${battery_bar {{ bat }}}${color}${endif}
 {% endfor %}
 ]]
