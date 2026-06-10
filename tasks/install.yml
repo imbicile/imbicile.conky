@@ -5,6 +5,7 @@
       - conky-all
       - lm-sensors
       - xfonts-terminus
+      - jq
     state: present
     update_cache: true
 
